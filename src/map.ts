@@ -3,16 +3,18 @@ import {
   Map,
   MapOptions,
   MapStyle,
+  // MaptilerProjectionControl,
 } from '@maptiler/sdk'
 
 import '@maptiler/sdk/style.css'
+import ProjectionToggleControl from './ProjectionToggleControl'
 
 /**
  * Initializes and returns a new map instance with the specified configuration.
  *
  * @returns {Map} A new map instance configured with the specified options.
  */
-export function initMap() {
+export async function initMap() {
   checkMapEnvVariables()
 
   const container = getMapContainer()
@@ -24,15 +26,21 @@ export function initMap() {
     ...config,
     container,
     apiKey: import.meta.env.VITE_MAPTILER_API_KEY as string,
-    style: MapStyle.OUTDOOR,
+    style: MapStyle.HYBRID,
     center: [-7.445255156094822, 39.41918253748721],
     zoom: 14.5,
+    minZoom: 1,
     pitch: 80,
     bearing: -0,
     terrain: true,
   }
 
-  return new Map(mapConfig)
+
+  const map = new Map(mapConfig)
+
+  map.addControl(new ProjectionToggleControl());
+
+  return await map.onReadyAsync()
 }
 
 /**
