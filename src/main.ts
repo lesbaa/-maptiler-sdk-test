@@ -1,7 +1,14 @@
+import { initMap } from './map'
 import './style.css'
 
 function main() {
-  console.log(import.meta.env.VITE_MAPTILER_API_KEY)
+  try {
+    initMap()
+  } catch (error) {
+    // Handle any errors that occur during initialization
+    // TODO: deal with this more elegantly
+    console.error(error)
+  }
 }
 
 main()
