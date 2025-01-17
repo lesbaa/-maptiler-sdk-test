@@ -39,9 +39,12 @@ jobs:
         with:
           node-version: '18.20.3' # this is what is used on my local
 
-      - name: Install dependencies and build
+      - name: npm install
+        run: npm install
+
+      - name: Vite Buikd
         run: |
-          npm install && npm run build:ghpages
+          npm run build:ghpages
         env:
           NODE_ENV: production
           VITE_MAPTILER_API_KEY: ${{ vars.MAPTILER_API_KEY_PROD }}
