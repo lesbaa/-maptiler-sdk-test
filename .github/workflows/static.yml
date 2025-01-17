@@ -40,13 +40,11 @@ jobs:
           node-version: '18.20.3' # this is what is used on my local
 
       - name: Install dependencies and build
+        run: |
+          npm run build:ghpages
         env:
           NODE_ENV: production
           VITE_MAPTILER_API_KEY: ${{ vars.MAPTILER_API_KEY_PROD }}
-        run: |
-          npm ci
-          npm run build:ghpages
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

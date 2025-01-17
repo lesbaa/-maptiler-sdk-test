@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "build:ghpages": "vite build --outDir ghpages --base \"/-maptiler-sdk-test/\""
+    "build:ghpages": "tsc && vite build --outDir ghpages --base \"/-maptiler-sdk-test/\""
   },
   "devDependencies": {
     "typescript": "~5.6.2",
