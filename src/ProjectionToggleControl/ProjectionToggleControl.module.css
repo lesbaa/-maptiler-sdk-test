@@ -1,0 +1,7 @@
+/* why is this a css module? Mostly because the control is self-contained*/
+
+.ProjectionToggleControl {
+  cursor: pointer;
+  width: 70px;
+  color: rgb(68,73,82);
+}

@@ -1,9 +1,9 @@
 import { initMap } from './map'
-import './style.css'
+import './global.css'
 
-function main() {
+async function main() {
   try {
-    initMap()
+    const map = await initMap()
   } catch (error) {
     // Handle any errors that occur during initialization
     // TODO: deal with this more elegantly
