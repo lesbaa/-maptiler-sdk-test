@@ -41,6 +41,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
+          npm install
           npm run build:ghpages
         env:
           NODE_ENV: production
