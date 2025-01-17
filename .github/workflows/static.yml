@@ -41,8 +41,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm install
-          npm run build:ghpages
+          npm install && npm run build:ghpages
         env:
           NODE_ENV: production
           VITE_MAPTILER_API_KEY: ${{ vars.MAPTILER_API_KEY_PROD }}
