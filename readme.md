@@ -46,7 +46,7 @@ A live version is available [here](https://lesbaa.github.io/-maptiler-sdk-test/)
     npm install
     ```
 
-To run locally, you will need a maptiler API key. The key for "production" (github pages) is set in github secrets and has domain blocking, and can only be used from `lesbaa/github.io`.
+To run locally, you will need a maptiler API key. The key for "production" (github pages) is set in github secrets and has domain blocking, and can only be used from `https://lesbaa.github.io`.
 
 1. Create a .env file in the root directory and add your MapTiler API key:
     ```sh
