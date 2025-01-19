@@ -7,7 +7,9 @@ import {
 } from '@maptiler/sdk'
 
 import '@maptiler/sdk/style.css'
-import ProjectionToggleControl from './ProjectionToggleControl'
+import ProjectionToggleControl from '../ProjectionToggleControl'
+import { MAP_ORIGIN_LNG_LAT } from '../consts'
+import ModelAttributionControl from '../ModelAttributionControl/ModelAttributionControl'
 
 /**
  * Initializes and returns a new map instance with the specified configuration.
@@ -27,8 +29,8 @@ export async function initMap() {
     container,
     apiKey: import.meta.env.VITE_MAPTILER_API_KEY as string,
     style: MapStyle.HYBRID,
-    center: [-7.445255156094822, 39.41918253748721],
-    zoom: 14.5,
+    center: MAP_ORIGIN_LNG_LAT,
+    zoom: 15,
     minZoom: 1,
     pitch: 80,
     bearing: -0,
@@ -38,7 +40,10 @@ export async function initMap() {
 
   const map = new Map(mapConfig)
 
+  // we could do this with the maptiler projection control
+  // but I wanted to show how to create a custom control
   map.addControl(new ProjectionToggleControl());
+  map.addControl(new ModelAttributionControl());
 
   return await map.onReadyAsync()
 }
