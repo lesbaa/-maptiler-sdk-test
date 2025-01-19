@@ -132,7 +132,7 @@ function createDuckModelConfig({ map, debug }: { map: Map, debug?: boolean }): I
       }
 
       new GLTFLoader()
-        .setPath('/models/rubber_duck/')
+        .setPath(`${import.meta.env.BASE_URL}/models/rubber_duck/`)
         .load(
           'scene.gltf',
           (object) => {
