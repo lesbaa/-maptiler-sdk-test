@@ -7,8 +7,8 @@ import {
 import styles from "./ProjectionToggleControl.module.css"
 
 enum ProjectionTypeText {
-  ToGlobe = 'Switch to Globe 🌐',
-  ToMercator = 'Switch to Mercator 🗺️',
+  ToGlobe = '🌐',
+  ToMercator = '🗺️',
 }
 
 export default class ProjectionToggleControl implements IControl {
@@ -25,7 +25,7 @@ export default class ProjectionToggleControl implements IControl {
   }
 
   getDefaultPosition(): ControlPosition {
-    return 'top-left';
+    return 'top-right';
   }
 
   onRemove(): void {
@@ -53,6 +53,7 @@ export default class ProjectionToggleControl implements IControl {
 
     if (!this.button) return;
     this.button.textContent = ProjectionTypeText.ToMercator;
+    this.button.title = getButtonTitle('globe');
   }
 
   switchToMercatorProjection(): void {
@@ -61,6 +62,7 @@ export default class ProjectionToggleControl implements IControl {
 
     if (!this.button) return;
     this.button.textContent = ProjectionTypeText.ToGlobe;
+    this.button.title = getButtonTitle('mercator');
   }
 }
 
@@ -72,9 +74,10 @@ function createButton({ projection }: { projection: ProjectionSpecification['typ
     : ProjectionTypeText.ToGlobe;
 
   button.id = 'projection-toggle';
+  button.title = getButtonTitle(projection);
 
   button.className = [
-    'maplibregl-ctrl-top-left',
+    // 'maplibregl-ctrl-top-right',
     'maplibregl-ctrl',
     'maplibregl-ctrl-group',
     styles.ProjectionToggleControl,
@@ -83,4 +86,10 @@ function createButton({ projection }: { projection: ProjectionSpecification['typ
     .join(' ');
 
   return button;
-} 
+}
+
+function getButtonTitle(projection: ProjectionSpecification['type']): string {
+  return projection === 'globe'
+    ? 'Switch to Mercator projection'
+    : 'Switch to Globe projection';
+}
