@@ -78,7 +78,11 @@ To deploy to github pages simply `git push origin main`. The github action defin
 
 ## Project Details & Approach
 
-## UI / Libs etc.
+### Versioning
+
+Given that this is a small project, there is no semantic versioning. If we were adding APIs additional bugfixes the we could consider more stringent versioning, but at the moment, I didn't feel it was necessary.
+
+### UI / Libs etc.
 
 I opted to go for vanilla JS and forego any UI library as most of the UI is taken care of by the map library, and adding an additional library like React, Vue Svelt etc was un-necessary and would only add a layer of additional build complexity and coding complexity. It just simply didn't seem necessary.
 
@@ -92,7 +96,7 @@ The 3D gltf model of a rubber duck is integrated using Three.js. The model is lo
 
 The model, scene and lighting are created and rendered with Three.js with projection to map / world / mercator / globe space taken care of by applying the MV matrix from the `Map.transform.getMatrixForModel()` function. This is mostly taken  from the docs [here](https://maplibre.org/maplibre-gl-js/docs/API/interfaces/CustomLayerInterface/) and [here](https://maplibre.org/maplibre-gl-js/docs/examples/add-3d-model/). The elevation for the model is queried via `Map.queryTerrainElevation(this.modelLngLat)`
 
-#### Additional notes / differences to the docs
+### Additional notes / differences to the docs
 - I namespaced the three classes under a `three` object within the customlayer definition, extending the `CustomLayerInterface`. This was just to a implement a clear separation between three-land and maplibre-gl-land.
 - I added and additonal `temp` field within this populated with any objects that are used regularly (eg) on every frame to avoid having to reinstantiate a new object on every frame. Whilst this isn't a problem on a small scale, on larger scales it would have an effect on render performance.
 - Passing additonal config, such as the model path, base altitude could have been possible. However, for the pruposes of this test, I felt it was probably overkill.
