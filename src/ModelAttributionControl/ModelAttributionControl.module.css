@@ -1,0 +1,37 @@
+/* why is this a css module? Mostly because the control is self-contained */
+/* and it's easier to manage style encapsulation this way */
+
+.ModelCreditControl {
+  cursor: pointer;
+  color: black;
+  background: transparent;
+  border: 0;
+}
+
+.ModelCreditControl:hover {
+  color: inherit;
+}
+
+.attributionContent {
+  padding: 1rem;
+  border: 0.1rem solid rgb(68,73,82);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  background-color: white;
+  color: rgb(68,73,82);
+  z-index: 1000;
+}
+
+.attributionContent .close {
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.attributionContent.visible {
+  opacity: 1;
+  pointer-events: all;
+}

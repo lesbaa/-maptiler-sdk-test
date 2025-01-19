@@ -2,6 +2,8 @@
 
 .ProjectionToggleControl {
   cursor: pointer;
-  width: 70px;
+  width: 33px;
+  height: 33px;
   color: rgb(68,73,82);
+  border: inherit;
 }
