@@ -98,7 +98,7 @@ The model, scene and lighting are created and rendered with Three.js with projec
 
 ### Additional notes / differences to the docs
 - I namespaced the three classes under a `three` object within the customlayer definition, extending the `CustomLayerInterface`. This was just to a implement a clear separation between three-land and maplibre-gl-land.
-- I added and additonal `temp` field within this populated with any objects that are used regularly (eg) on every frame to avoid having to reinstantiate a new object on every frame. Whilst this isn't a problem on a small scale, on larger scales it would have an effect on render performance.
+- I added and additonal `temp` field within this populated with any objects that are used regularly (eg on every render frame) to avoid having to reinstantiate a new object on every frame. Whilst this isn't a problem on a small scale, on larger scales it would have an effect on render performance.
 - Passing additonal config, such as the model path, base altitude could have been possible. However, for the pruposes of this test, I felt it was probably overkill.
 
 ### Custom Controls
