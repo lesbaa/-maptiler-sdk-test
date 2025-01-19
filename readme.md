@@ -36,24 +36,24 @@ A live version is available [here](https://lesbaa.github.io/-maptiler-sdk-test/)
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repo:
     ```sh
     git clone git@github.com:lesbaa/-maptiler-sdk-test.git
     ```
 
-2. Install dependencies:
+2. Install deps:
     ```sh
     npm install
     ```
 
-To run locally, you will need a maptiler API key whitelisted to use localhost. The key for "production" (github pages) is set in github secrets and has domain blocking to only be called from `lesbaa/github.io`.
+To run locally, you will need a maptiler API key. The key for "production" (github pages) is set in github secrets and has domain blocking, and can only be used from `lesbaa/github.io`.
 
 1. Create a .env file in the root directory and add your MapTiler API key:
     ```sh
     VITE_MAPTILER_API_KEY=your_maptiler_api_key
     ```
 
-### Development, build
+### Development, build, deployment
 
 To start the development server:
 ```sh
@@ -69,8 +69,12 @@ npm run build
 
 To deploy the project to GitHub Pages:
 ```sh
-npm run build:ghpages && git push origin main
+npm run build:ghpages
 ```
+
+### Deploying to Github pages
+
+To deploy to github pages simply `git push origin main`. The github action defined in `.github/workflows/static.yml` will build and deploy the app to github pages. At present this is set up to be served from the the base directory of `/-maptiler-sdk-test`, at present this isn't configurable although can be easily changed to simply pass a command line arg instead of the hardcoded base in package.json.
 
 ## Project Details & Approach
 
