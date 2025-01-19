@@ -36,24 +36,24 @@ A live version is available [here](https://lesbaa.github.io/-maptiler-sdk-test/)
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repo:
     ```sh
     git clone git@github.com:lesbaa/-maptiler-sdk-test.git
     ```
 
-2. Install dependencies:
+2. Install deps:
     ```sh
     npm install
     ```
 
-To run locally, you will need a maptiler API key whitelisted to use localhost. The key for "production" (github pages) is set in github secrets and has domain blocking to only be called from `lesbaa/github.io`.
+To run locally, you will need a maptiler API key. The key for "production" (github pages) is set in github secrets and has domain blocking, and can only be used from `lesbaa/github.io`.
 
 1. Create a .env file in the root directory and add your MapTiler API key:
     ```sh
     VITE_MAPTILER_API_KEY=your_maptiler_api_key
     ```
 
-### Development, build
+### Development, build, deployment
 
 To start the development server:
 ```sh
@@ -69,12 +69,20 @@ npm run build
 
 To deploy the project to GitHub Pages:
 ```sh
-npm run build:ghpages && git push origin main
+npm run build:ghpages
 ```
+
+### Deploying to Github pages
+
+To deploy to github pages simply `git push origin main`. The github action defined in `.github/workflows/static.yml` will build and deploy the app to github pages. At present this is set up to be served from the the base directory of `/-maptiler-sdk-test`, at present this isn't configurable although can be easily changed to simply pass a command line arg instead of the hardcoded base in package.json.
 
 ## Project Details & Approach
 
-## UI / Libs etc.
+### Versioning
+
+Given that this is a small project, there is no semantic versioning. If we were adding APIs additional bugfixes the we could consider more stringent versioning, but at the moment, I didn't feel it was necessary.
+
+### UI / Libs etc.
 
 I opted to go for vanilla JS and forego any UI library as most of the UI is taken care of by the map library, and adding an additional library like React, Vue Svelt etc was un-necessary and would only add a layer of additional build complexity and coding complexity. It just simply didn't seem necessary.
 
@@ -88,7 +96,7 @@ The 3D gltf model of a rubber duck is integrated using Three.js. The model is lo
 
 The model, scene and lighting are created and rendered with Three.js with projection to map / world / mercator / globe space taken care of by applying the MV matrix from the `Map.transform.getMatrixForModel()` function. This is mostly taken  from the docs [here](https://maplibre.org/maplibre-gl-js/docs/API/interfaces/CustomLayerInterface/) and [here](https://maplibre.org/maplibre-gl-js/docs/examples/add-3d-model/). The elevation for the model is queried via `Map.queryTerrainElevation(this.modelLngLat)`
 
-#### Additional notes / differences to the docs
+### Additional notes / differences to the docs
 - I namespaced the three classes under a `three` object within the customlayer definition, extending the `CustomLayerInterface`. This was just to a implement a clear separation between three-land and maplibre-gl-land.
 - I added and additonal `temp` field within this populated with any objects that are used regularly (eg) on every frame to avoid having to reinstantiate a new object on every frame. Whilst this isn't a problem on a small scale, on larger scales it would have an effect on render performance.
 - Passing additonal config, such as the model path, base altitude could have been possible. However, for the pruposes of this test, I felt it was probably overkill.
